@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Game {
     // 플레이어 등록
-    private static List<Player> preparePlayers(Scanner scanner) {
+    static List<Player> preparePlayers(Scanner scanner) {
         List<Player> players = new ArrayList<>();
         int numberOfPlayers = 0;
 
@@ -81,14 +81,14 @@ public class Game {
     }
 
     // 게임 시작
-    private static void runGame(List<Player> players, int gamesToPlay) {
+    static void runGame(List<Player> players, int gamesToPlay) {
         for (int i = 0; i < gamesToPlay; i++) {
             playRound(players);
         }
     }
 
     // 결과판
-    private static void printFinalResults(List<Player> players, int gamesToPlay) {
+    static void printFinalResults(List<Player> players, int gamesToPlay) {
         players.sort((p1, p2) -> Integer.compare(p2.wins, p1.wins));
 
         System.out.println("============================ Final Results ==========================");
@@ -100,23 +100,5 @@ public class Game {
         }
         System.out.println("=====================================================================");
         System.out.println("Today, after playing " + gamesToPlay + " games, the final winner is The " + players.get(0).nickname + "!");
-    }
-
-    // 메인
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Put you wanna Games to Play > ");
-        final int gamesToPlay = scanner.nextInt();
-        scanner.nextLine();
-
-        List<Player> gamePlayers = preparePlayers(scanner);
-
-        System.out.println("All Good! If you wanna start to game, enter the number 1.");
-        scanner.nextLine();
-
-        runGame(gamePlayers, gamesToPlay);
-
-        printFinalResults(gamePlayers, gamesToPlay);
     }
 }
